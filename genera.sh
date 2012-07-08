@@ -1,6 +1,6 @@
 RRD_DIR="/root/ninuxstats/rrds/"
 WWW_DIR="/var/www/graphs/"
-rrdtool graph ${WWW_DIR}$1.png --start -2d --end now --vertical-label bits/s --width 720 --height 140 --title "${1}" DEF:graph_out_pre=${RRD_DIR}${1}.rrd:out:LAST DEF:graph_in_pre=${RRD_DIR}${1}.rrd:in:LAST \
+rrdtool graph ${WWW_DIR}${1}_${2}.png --start -${2} --end now --vertical-label bits/s --width 720 --height 140 --title "${1}" DEF:graph_out_pre=${RRD_DIR}${1}.rrd:out:LAST DEF:graph_in_pre=${RRD_DIR}${1}.rrd:in:LAST \
 CDEF:graph_in_bytes=graph_in_pre,UN,0,graph_in_pre,IF \
 CDEF:graph_out_bytes=graph_out_pre,UN,0,graph_out_pre,IF \
 CDEF:graph_in=graph_in_bytes,8,* \
